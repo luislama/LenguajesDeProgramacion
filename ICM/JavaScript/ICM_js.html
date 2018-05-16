@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta author="Luis Sunjing Lama Aguirre">
 	<title>BMI</title>
 </head>
 <body>	
@@ -25,51 +26,58 @@
 	<br>
 	<hr>
 	<br>
-	<!-- a href="https://en.wikipedia.org/wiki/Body_mass_index" style="display:none">Information about the BMI Calculation and the Category.</a -->
+
 	<button id="btn_referencia">Referencia</button>
+
 	<script>
 		var calculateBmi = function(){
-			var mass = parseFloat( document.getElementById("mass").value ),
-			    height = parseFloat( document.getElementById("height").value );
+			var mass = parseFloat( document.getElementById("mass").value );
+			var height = parseFloat( document.getElementById("height").value );
 			
 			return ( mass / (height*height) );
 		}
 		
 		function category(){
-			var bmi = calculateBmi();
-			var categoryByBMI;
-			
-			bmi = Number.parseFloat(bmi).toFixed(2);
-			if(bmi < 18.5){
-				if(bmi >= 16){
-					categoryByBMI= "Underweight";
-				}else if(bmi >= 15){
-					categoryByBMI= "Severely Underweight";
-				}else{
-					categoryByBMI= "Very Severely Underweight";
-				}
-			}else if(bmi >= 25 ){
 
-				if(bmi >= 40){
-					if(bmi < 45){
+			var bmi = Number.parseFloat( calculateBmi() ).toFixed(2);
+			var categoryByBMI = "";
+
+			if(bmi<30){
+				if(bmi<16){
+					if(bmi<15){
+						categoryByBMI= "Very Severely Underweight";
+					}else{
+						categoryByBMI= "Severely Underweight";
+					}
+				}else if(bmi>=18.5){
+					if(bmi<25){
+						categoryByBMI= "Healthy weight";
+					}else{
+						categoryByBMI= "Overweight";
+					}
+				}else{
+					categoryByBMI= "Underweight";
+				}
+			}else if(bmi>=35){
+				if(bmi<45){
+					if(bmi<40){
+						categoryByBMI= "Obese Class II";
+					}else{
 						categoryByBMI= "Obese Class III";
-					}else if(bmi < 50){
-						categoryByBMI= "Obese Class IV";
-					}else if(bmi < 60){
+					}
+				}else if(bmi>=50){
+					if(bmi<60){
 						categoryByBMI= "Obese Class V";
 					}else{
 						categoryByBMI= "Obese Class VI";
 					}
-				}else if(bmi < 30){
-					categoryByBMI= "Overweight";
-				}else if(bmi < 35){
-					categoryByBMI= "Obese Class I";
 				}else{
-					categoryByBMI= "Obese Class II";
+					categoryByBMI= "Obese Class IV";
 				}
 			}else{
-				categoryByBMI= "Healthy weight";
+				categoryByBMI= "Obese Class I";
 			}
+
 			return "BMI: "+bmi+" | Your category is "+categoryByBMI+"!";
 		}
 
