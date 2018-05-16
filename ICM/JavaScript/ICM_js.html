@@ -39,6 +39,7 @@
 			var bmi = calculateBmi();
 			var categoryByBMI;
 			
+			bmi = Number.parseFloat(bmi).toFixed(2);
 			if(bmi < 18.5){
 				if(bmi >= 16){
 					categoryByBMI= "Underweight";
@@ -47,21 +48,31 @@
 				}else{
 					categoryByBMI= "Very Severely Underweight";
 				}
-			}else if(bmi>25 ){
-				if(bmi < 30){
+			}else if(bmi >= 25 ){
+
+				if(bmi >= 40){
+					if(bmi < 45){
+						categoryByBMI= "Obese Class III";
+					}else if(bmi < 50){
+						categoryByBMI= "Obese Class IV";
+					}else if(bmi < 60){
+						categoryByBMI= "Obese Class V";
+					}else{
+						categoryByBMI= "Obese Class VI";
+					}
+				}else if(bmi < 30){
 					categoryByBMI= "Overweight";
 				}else if(bmi < 35){
 					categoryByBMI= "Obese Class I";
-				}else if(bmi < 40){
-					categoryByBMI= "Obese Class II";
 				}else{
-					categoryByBMI= "Obese Class III";
+					categoryByBMI= "Obese Class II";
 				}
 			}else{
 				categoryByBMI= "Healthy weight";
 			}
 			return "BMI: "+bmi+" | Your category is "+categoryByBMI+"!";
 		}
+
 		var btn_referencia = document.getElementById("btn_referencia");
 		btn_referencia.addEventListener("click",function(){
 			window.open("https://en.wikipedia.org/wiki/Body_mass_index");
