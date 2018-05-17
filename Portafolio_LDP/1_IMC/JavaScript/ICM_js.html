@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta author="Luis Sunjing Lama Aguirre">
+	<title>BMI</title>
+</head>
+<body>	
+	<div align="center">
+		<br>
+		<h1>Body Mass Index</h1>
+		<br>
+		<hr>
+	</div>
+	<div align="center" size =10 margin="70">
+		<br>
+		<div>
+			<form action="">
+				Masa(kg): <input type="text" maxlength="7" id="mass">
+		   	   <br> Estatura(m): <input type="text" maxlength="6" id="height">
+			   <br><br>
+				<input type="button" value="Calculate BMI" onclick="alert( category() )">
+			</form>
+		</div>
+	</div>
+	<br>
+	<hr>
+	<br>
+
+	<button id="btn_referencia">Referencia</button>
+
+	<script>
+		var calculateBmi = function(){
+			var mass = parseFloat( document.getElementById("mass").value );
+			var height = parseFloat( document.getElementById("height").value );
+			
+			return ( mass / (height*height) );
+		}
+		
+		function category(){
+
+			var bmi = Number.parseFloat( calculateBmi() ).toFixed(2);
+			var categoryByBMI = "";
+
+			if(bmi<30){
+				if(bmi<16){
+					if(bmi<15){
+						categoryByBMI= "Very Severely Underweight";
+					}else{
+						categoryByBMI= "Severely Underweight";
+					}
+				}else if(bmi>=18.5){
+					if(bmi<25){
+						categoryByBMI= "Healthy weight";
+					}else{
+						categoryByBMI= "Overweight";
+					}
+				}else{
+					categoryByBMI= "Underweight";
+				}
+			}else if(bmi>=35){
+				if(bmi<45){
+					if(bmi<40){
+						categoryByBMI= "Obese Class II";
+					}else{
+						categoryByBMI= "Obese Class III";
+					}
+				}else if(bmi>=50){
+					if(bmi<60){
+						categoryByBMI= "Obese Class V";
+					}else{
+						categoryByBMI= "Obese Class VI";
+					}
+				}else{
+					categoryByBMI= "Obese Class IV";
+				}
+			}else{
+				categoryByBMI= "Obese Class I";
+			}
+
+			return "BMI: "+bmi+" | Your category is "+categoryByBMI+"!";
+		}
+
+		var btn_referencia = document.getElementById("btn_referencia");
+		btn_referencia.addEventListener("click",function(){
+			window.open("https://en.wikipedia.org/wiki/Body_mass_index");
+		});
+	</script>
+</body>
+</html>
